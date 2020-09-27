@@ -40,10 +40,8 @@ IF %mkvCounter%==1 (
 		setlocal EnableDelayedExpansion
 		for %%f in (*.mkv) do set mkvFileName=%%f
 		for %%f in (*.srt) do set srtFileName=%%f
-		if [%param%]==[/y] (
-			call :MergeFiles !mkvFileName!, !srtFileName!
-			call :MoveFiles !mkvFileName!, !srtFileName!
-		) else echo call :MergeFiles !mkvFileName!, !srtFileName!
+		call :MergeFiles "!mkvFileName!", "!srtFileName!"
+		call :MoveFiles "!mkvFileName!", "!srtFileName!"
 		endlocal
 	) else if %mkvCounter% GTR 1 echo there is more than 1 .srt file in %CD% please fix this
 ) else if %srtCounter% GTR 1 echo there is more than 1 .mkv file in %CD% please fix this
@@ -77,11 +75,18 @@ exit /b 0
 
 rem // usage: param1: source mkv file, param2: source srt file
 :MergeFiles 
-"C:\Portable Installations\mkvtoolnix\mkvmerge.exe" -o "%baseDir%\%~1" "%~1" "%~2"
+if [%param%]==[/y] (
+	"C:\Portable Installations\mkvtoolnix\mkvmerge.exe" -o "%baseDir%\%~1" "%~1" "%~2" --language 0:eng --track-name English
+) else echo "C:\Portable Installations\mkvtoolnix\mkvmerge.exe" -o "%baseDir%\%~1" "%~1" "%~2" --language 0:eng --track-name English
 exit /b 0
 
 rem // usage: param1: mkv, param2: srt
 :MoveFiles 
-move "%~1" "%baseDir%\%toDeleteFolderName%\%~1"
-move "%~2" "%baseDir%\%toDeleteFolderName%\%~2"
+if [%param%]==[/y] (
+	move "%~1" "%baseDir%\%toDeleteFolderName%\%~1"
+	move "%~2" "%baseDir%\%toDeleteFolderName%\%~2"
+) else (
+	echo move "%~1" "%baseDir%\%toDeleteFolderName%\%~1"
+	echo move "%~2" "%baseDir%\%toDeleteFolderName%\%~2"
+)
 exit /b 0
