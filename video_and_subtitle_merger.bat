@@ -1,14 +1,15 @@
 @echo off
 rem // check for parameter to arm the script
-if not [%1]==[/y] echo Usage: add /y parameter to execute
-set param=%1
-
+set fileType=%1
+if "%1"=="" echo enter file type as first param (e.g. mkv)
+set param=%2
+if not [%param%]==[/y] echo Usage: add /y as 2nd parameter to execute
 set baseDir=%CD%
 
 rem // setup the folder for source files
-set "toDeleteFolderName=toDelete"
+set toDeleteFolderName=toDelete
 if not exist %toDeleteFolderName% (
-	if not [%1]==[/y] (echo mkdir %toDeleteFolderName%) else mkdir %toDeleteFolderName%
+	if not [%param%]==[/y] (echo mkdir "%toDeleteFolderName%") else mkdir "%toDeleteFolderName%"
 )
 
 call :treeProcess
@@ -28,17 +29,17 @@ exit /b 0
 set /A mkvCounter=0
 set /A srtCounter=0
 rem // Count .mkv files in directory
-for %%f in (*.mkv) do (
+for %%f in (*.%fileType%) do (
 	set /A mkvCounter=mkvCounter+1)
 REM Count .srt files in directory
-for %%f in (*.srt) do (
+for %%f in (*.%fileType%) do (
 	set /A srtCounter=srtCounter+1)
 
 REM // Merge if there is one mkv and one srt
 IF %mkvCounter%==1 (
 	IF %srtCounter%==1 (
 		setlocal EnableDelayedExpansion
-		for %%f in (*.mkv) do set mkvFileName=%%f
+		for %%f in (*.%fileType%) do set mkvFileName=%%f
 		for %%f in (*.srt) do set srtFileName=%%f
 		call :MergeFiles "!mkvFileName!", "!srtFileName!"
 		call :MoveFiles "!mkvFileName!", "!srtFileName!"
@@ -52,7 +53,7 @@ rem // usage: param1: the return value
 echo There is more than 1 .mkv file in this directory
 setlocal EnableDelayedExpansion
 set counter=1
-for %%f in (*.mkv) do (
+for %%f in (*.%fileType%) do (
 	set a[!counter!]=%%f
 	echo !counter!: %%f
 	set /a counter=counter+1
@@ -76,8 +77,8 @@ exit /b 0
 rem // usage: param1: source mkv file, param2: source srt file
 :MergeFiles 
 if [%param%]==[/y] (
-	"C:\Portable Installations\mkvtoolnix\mkvmerge.exe" -o "%baseDir%\%~1" "%~1" "%~2" --language 0:eng --track-name English
-) else echo "C:\Portable Installations\mkvtoolnix\mkvmerge.exe" -o "%baseDir%\%~1" "%~1" "%~2" --language 0:eng --track-name English
+	"C:\Portable Installations\mkvtoolnix\mkvmerge.exe" -o "%baseDir%\%~1" "%~1" "%~2" --language 0:eng --track-name 0:English
+) else echo "C:\Portable Installations\mkvtoolnix\mkvmerge.exe" -o "%baseDir%\%~1" "%~1" "%~2" --language 0:eng --track-name 0:English
 exit /b 0
 
 rem // usage: param1: mkv, param2: srt
