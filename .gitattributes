@@ -1,1 +1,1 @@
-generate-work-times.py  filter=git-crypt diff=git-crypt
+./python/generate-work-times.py  filter=git-crypt diff=git-crypt
