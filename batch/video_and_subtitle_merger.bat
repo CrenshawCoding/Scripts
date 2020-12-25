@@ -42,7 +42,8 @@ IF %mkvCounter%==1 (
 		for %%f in (*.%fileType%) do set mkvFileName=%%f
 		for %%f in (*.srt) do set srtFileName=%%f
 		call :MergeFiles "!mkvFileName!", "!srtFileName!"
-		call :MoveFiles "!mkvFileName!", "!srtFileName!"
+		rem // files would get moved if merge fails call 
+		rem // :MoveFiles "!mkvFileName!", "!srtFileName!"
 		endlocal
 	) else if %mkvCounter% GTR 1 echo there is more than 1 .srt file in %CD% please fix this
 ) else if %srtCounter% GTR 1 echo there is more than 1 .mkv file in %CD% please fix this
