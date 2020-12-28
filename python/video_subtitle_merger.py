@@ -38,7 +38,7 @@ for root, dirs, files in os.walk(args.dir, topdown = False):
         if name.endswith('.' + args.video_format) and os.path.join(root, name).count('/') > 2: #found video files in subsubdirectories of root
             print('The root directory \'' + str(args.dir) + '\' is flawed. It may only contain video or subtitle files in subdirectories of \'' + str(args.dir) + '\' but \'' + str(os.path.join(root, name)) + '\' was found.')
             if not inp:
-                inp = raw_input('Do you wish to move all of them to the root dir' + os.path.join(args.dir, name) + ' automatically? Type \'y\' or \'n\'\n')
+                inp = input('Do you wish to move all of them to the root dir' + os.path.join(args.dir, name) + ' automatically? Type \'y\' or \'n\'\n')
             if inp == 'y':  #moving the file to the root directory
                 shutil.move(os.path.join(root, name), os.path.join(args.dir, name))
                 print('Moved', os.path.join(root, name), 'to', os.path.join(args.dir, name))
@@ -54,7 +54,7 @@ for root, dirs, files in os.walk(args.dir, topdown = False):
 
 #Multiple files of same type in base directory, offer to sort them
 if(colliding_files_in_dir(args.dir)):
-    inp = raw_input('Multiple files with the same extension in root detected\nDo you wish to sort them into subdirectories automatically? Type \'y\' or \'n\':\n')
+    inp = input('Multiple files with the same extension in root detected\nDo you wish to sort them into subdirectories automatically? Type \'y\' or \'n\':\n')
     if inp == 'y':
         all_video_files = get_all_files_of_type(args.video_format, args.dir)
         all_subtitle_files = get_all_files_of_type(args.subtitle_format, args.dir)
@@ -82,8 +82,8 @@ for root, dirs, files in os.walk(args.dir, topdown = True):
     for name in dirs:
         if count_files_of_type(args.video_format, os.path.join(root, name)) == 1 and count_files_of_type(args.subtitle_format, os.path.join(root, name)) > 0:
             video_file = get_all_files_of_type(args.video_format, os.path.join(root, name))[0]
-            merge_command = 'mkvmerge ' + '-o ' + os.path.join(args.dir, video_file) + ' ' + os.path.join(root, name, video_file) + ' '
+            merge_command = 'mkvmerge ' + '-o \"' + os.path.join(args.dir, video_file) + '\" \"' + os.path.join(root, name, video_file) + '\" '
             for subfile in get_all_files_of_type(args.subtitle_format, os.path.join(root, name)):
-                merge_command = merge_command + os.path.join(root, name, subfile) + ' '
+                merge_command = merge_command + '\"' + os.path.join(root, name, subfile) + '\" '
             print(merge_command)
             os.system(merge_command)
