@@ -37,7 +37,7 @@ for root, dirs, files in os.walk(args.dir, topdown = False):
         continue
     
     for name in files:
-        if name.endswith('.' + args.video_format) and os.path.join(root, name).count('/') > 2: #found video files in subsubdirectories of root
+        if name.endswith('.' + args.video_format) and os.path.join(root, name).count(os.sep) > 2: #found video files in subsubdirectories of root
             print('The root directory \'' + str(args.dir) + '\' is flawed. It may only contain video or subtitle files in subdirectories of \'' + str(args.dir) + '\' but \'' + str(os.path.join(root, name)) + '\' was found.')
             if not inp:
                 inp = input('Do you wish to move all of them to the root dir' + os.path.join(args.dir, name) + ' automatically? Type \'y\' or \'n\'\n')
