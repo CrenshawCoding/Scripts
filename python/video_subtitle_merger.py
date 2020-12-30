@@ -4,13 +4,15 @@ import shutil
 
 # Setting up the arg parser:
 parser = argparse.ArgumentParser(description='parse for relevant information')
-parser.add_argument('video_format', help='File ending of the video files, e.g. mkv, mp4, etc')
-parser.add_argument('subtitle_format', help='File ending of the subtitle files, e.g. srt')
+parser.add_argument('video_format', help='File ending of the video files, currently supported: mkv, mp4', choices=['mkv', 'mp4'])
+parser.add_argument('subtitle_format', help='File ending of the subtitle files, currently supported: srt', choices=['srt'])
+parser.add_argument('subtitle_language', help='language of the subitle, currently supported: ger, en, spa', choices=['en', 'ger', 'spa'])
 parser.add_argument('--dir', help='Root directory for merging, default is \'.\'', default='.')
 args = parser.parse_args()
 
+#kinda deprecated. I always put files in subdirectories now. Makes it easier
 def colliding_files_in_dir(directory):
-    return True if count_files_of_type(args.video_format, directory) > 1 else False
+    return True if count_files_of_type(args.video_format, directory) > 0 else False
 
 def count_files_of_type(file_ext, directory):
     counter = 0
@@ -84,6 +86,7 @@ for root, dirs, files in os.walk(args.dir, topdown = True):
             video_file = get_all_files_of_type(args.video_format, os.path.join(root, name))[0]
             merge_command = 'mkvmerge ' + '-o \"' + os.path.join(args.dir, video_file) + '\" \"' + os.path.join(root, name, video_file) + '\" '
             for subfile in get_all_files_of_type(args.subtitle_format, os.path.join(root, name)):
-                merge_command = merge_command + '\"' + os.path.join(root, name, subfile) + '\" '
-            print(merge_command)
-            os.system(merge_command)
+                merge_command = merge_command + '--language 0:' + args.subtitle_language + ' \"' + os.path.join(root, name, subfile) + '\" '
+            if video_file and subfile:
+                print(merge_command)
+                os.system(merge_command)
