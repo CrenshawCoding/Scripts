@@ -1,0 +1,104 @@
+### Probleme von Aussagen in der Softwareentwicklung:
+Probleme:
+* keine Validation
+* wenig kontrollierte Studien
+* Risiken bei Ausbildung von IT-Personal groß
+
+Experimente/Studien:
+* Google Studie: Java vs C++ (unsere Bias)
+* Jahr 2000 Problem: Technik verlassen teuer
+* Microsoft Studie: Wissen stammt aus eigenen Erfahrungen, nicht research
+
+### Subjektivität:
+Beispiele:
+* Neckar Wuerfel, Dancer, Kelch/2-Gesichter
+* Wahrnehmung individuell beeinflusst 
+
+Experimente:
+* Pepsi vs Coke (Einfluss von Label auf Wahrnehmung (Geschmack))
+* Kölsch vs Altbier (auch hier Label beeinflusst Wahrnehmung)
+* Kommunikation (Erwartungshaltung zum Redner beeinflusst Wahrnehmung)
+* Abstandsschaetzung (Bewegung beeinflusst Schaetzung)
+* Corrupted Memory (Einpflanzen falscher Erinerrungen möglich)
+
+## Rationalität
+* Beobachtungen lassen nicht auf Gültigkeit schließen
+* Falsifizierung von Aussagen durch Gegenbeispiele
+
+### Geschichte des Experimentierens:
+* Softwareentwicklung hat parallelen zur Medizin (Bsp. UML ist Treatment, aber SE weniger flexibel)
+
+Experimente:
+* Pocken (renommierter Arzt liegt falsch, Politiker "entdeckt" das Impfen)
+* Kindbettfieber (Aufstellung von Hypothesen und testen durch Tierversuche)
+* Skorbut (erster Strukturierter Versuch mit homogenen Daten)
+* N of 1: Beinwickeln und Geschwüre: Messwiederholung
+* Animalischer Magnetismus (Blindstudie)
+* Nürnberg Salz (Doppelblindversuch)
+* Placebo
+* Cholera in London (kontrollierte Datensammlung)
+
+### Experimentieren
+Kritischer Rationalismus:
+* zugrunde liegt kritischer Rationalismus (klare Hypothesen, "saubere" Experimente, prüfen nicht Beweisen von Hypothesen, falsifizierung)
+* Hypothese impliziert Phänomen. Phänomen tritt nicht auf. Dann Hypothese verwerfen
+
+Phasen von kontrolliertem Experimentaufbau:
+* Hypothesen bestimmen
+* Aufgaben und Gruppenzuordnungen
+* Durchfuehrung
+* Analyse
+
+Hypothesen:
+* falsifizierbare Aussagen, quantifizierbar
+* Unterschiedshypothesen und Zusammenhangshypothesen
+* There als Menge von Hypothesen
+
+Probleme bei Experimenten:
+* Zusammenhang Streuung und Mittelwerte, Stoervariablen
+* 10x Problem: hohe Streuung (Softwaretechnik Problem)
+
+Probleme der Aufgabenstellungen:
+* nicht zu leicht, nicht zu schwer, keine Stoervariablen
+
+Messarten:
+* direkt, indirekt, Meinungsbasiert
+
+Versuchsaufbau:
+* prakitkabel, Stoerfaktoren, Zusammenhang zu Hypothese
+
+Designs:
+* AB Between
+* AB Between mit Messwdh.
+* AB/BA Cross Over
+* 4-Group Between-Subject 
+* Latin-Square Design
+* Alle haben Vor- und Nachteile
+
+### Analyse
+Grundlagen
+* Skalen (Nominal, Ordinal, Intervall, Verhaeltnis)
+* Lagemaße (Arithm. Mittel, Meidan, Quantile, Streuung Spannweite, Varianz)
+* Boxplots
+
+Signifikanztests:
+* H0 und H1, Alphafehler
+
+Analyseverfahren:
+* parametrisch/nicht parametrisch
+* T-Test, Mann-Whitney-U, Wilcoxon
+* Test auf Normalverteilung
+* Varianzanalyse ANOVA/Messwdh.
+
+Vorteile von Cross-Over:
+* Weniger Probanden benötigt
+
+Lerneffekte:
+* koennen Ergebnis stärker oder schwächer ausfallen lassen
+
+Threats to Validity:
+* Versuchsaufbau, Methode und Analyse
+* Internal, Conclusion, Construct, External
+* Experimente dokumentieren, mit Threats
+
+Es Existieren auch qualitative Methoden

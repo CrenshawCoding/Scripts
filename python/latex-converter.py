@@ -4,7 +4,7 @@ import shutil
 
 parser = argparse.ArgumentParser(description='parse for relevant information')
 parser.add_argument('input', help='Name of the file to input')
-parser.add_argument('--output', help='Name of the file to output', default='output.txt')
+parser.add_argument('--output', help='Name of the file to output', default='output.tex')
 args = parser.parse_args()
 
 inputf = open(args.input, 'r')
@@ -24,6 +24,14 @@ def prepend_tabs(string, amount):
         string += '\t'
     return string
     
+    
+# returns the content of the line without the leading tabs. Can cut off the newline char at the end if newline
+def get_line_content(line, leading_tabs, newline):
+    if newline:
+        return line[leading_tabs : len(line)]
+    else:
+        return line[leading_tabs : len(line) - 1] # cut off the \n at the end
+    
 input_line = inputf.readline()
 counter = 1
 leading_tabs = 0
@@ -38,7 +46,7 @@ while(input_line):
         converted += ('\\begin{itemize}\n')
         converted = prepend_tabs(converted, leading_tabs)
         converted += ('\\item{')
-        converted += (input_line[leading_tabs : len(input_line) - 1]) # -1 to cut off the newline
+        converted += (get_line_content(input_line, leading_tabs, False))
         converted += ('}\n')
         
     elif(leading_tabs < prev_tabs):
@@ -47,14 +55,35 @@ while(input_line):
             converted += ('\\end{itemize}\n')
             
         converted = prepend_tabs(converted, leading_tabs)
-        converted += (input_line[leading_tabs : len(input_line)])
+        if (get_line_content(input_line, leading_tabs, True) != "\n" and leading_tabs > 0):
+            converted += ('\\item{')
+            converted += (get_line_content(input_line, leading_tabs, False))
+            converted += ('}\n')
+        else:
+            converted += (get_line_content(input_line, leading_tabs, False))
         
     elif(leading_tabs == prev_tabs & leading_tabs > 0):
         converted = prepend_tabs(converted, leading_tabs)
         converted += ('\\item{')
-        converted += (input_line[leading_tabs : len(input_line) - 1])
+        converted += (get_line_content(input_line, leading_tabs, False))
         converted += ('}\n')
-    
+        
+    elif input_line[0:3] == '###':
+        converted += '\\newpage\n'
+        converted += '\\section{'
+        converted += get_line_content(input_line, 3, False)
+        converted += '}\n'
+        
+    elif input_line[0:2] == '##':
+        converted += '\\subsection{'
+        converted += get_line_content(input_line, 2, False)
+        converted += '}\n'
+        
+    elif input_line[0:1] == '#':
+        converted += '\\subsubsection{'
+        converted += get_line_content(input_line, 1, False)
+        converted += '}\n'
+        
     else:
        converted += (input_line[leading_tabs : len(input_line)]) 
         

@@ -1,0 +1,25 @@
+\section{Probleme von Aussagen in der Softwareentwicklung}
+:\textbf{Probleme}:\begin{itemize}
+	\item{keine Validatio}n	\item{wenig kontrollierte Studie}n	\item{Risiken bei Ausbildung von IT-Personal gro�}�\\\textbf{Experimente/Studien}:\begin{itemize}
+	\item{Google Studie: Java vs C++ (unsere Bias})	\item{Jahr 2000 Problem: Technik verlassen teue}r	\item{Microsoft Studie: Wissen stammt aus eigenen Erfahrungen, nicht researc}h\\\section{Subjektivität}
+:\textbf{Beispiele}:\begin{itemize}
+	\item{Neckar Wuerfel, Dancer, Kelch/2-Gesichte}r	\item{Wahrnehmung individuell beeinfluss}t\\\textbf{Experimente}:\begin{itemize}
+	\item{Pepsi vs Coke (Einfluss von Label auf Wahrnehmung (Geschmack)})	\item{Kölsch vs Altbier (auch hier Label beeinflusst Wahrnehmung})	\item{Kommunikation (Erwartungshaltung zum Redner beeinflusst Wahrnehmung})	\item{Abstandsschaetzung (Bewegung beeinflusst Schaetzung})	\item{Corrupted Memory (Einpflanzen falscher Erinerrungen möglich})\\\subsection{Rationalitä}
+t	\item{Beobachtungen lassen nicht auf Gültigkeit schließe}n	\item{Falsifizierung von Aussagen durch Gegenbeispiel}e\\\section{Geschichte des Experimentierens}
+:	\item{Softwareentwicklung hat parallelen zur Medizin (Bsp. UML ist Treatment, aber SE weniger flexibel})\\\textbf{Experimente}:\begin{itemize}
+	\item{Pocken (renommierter Arzt liegt falsch, Politiker "entdeckt" das Impfen})	\item{Kindbettfieber (Aufstellung von Hypothesen und testen durch Tierversuche})	\item{Skorbut (erster Strukturierter Versuch mit homogenen Daten})	\item{N of 1: Beinwickeln und Geschwüre: Messwiederholun}g	\item{Animalischer Magnetismus (Blindstudie})	\item{Nürnberg Salz (Doppelblindversuch})	\item{Placeb}o	\item{Cholera in London (kontrollierte Datensammlung})\\\section{Experimentiere}
+n\textbf{Kritischer Rationalismus}:\begin{itemize}
+	\item{zugrunde liegt kritischer Rationalismus (klare Hypothesen, "saubere" Experimente, prüfen nicht Beweisen von Hypothesen, falsifizierung})	\item{Hypothese impliziert Phänomen. Phänomen tritt nicht auf. Dann Hypothese verwerfe}n\\\textbf{Phasen von kontrolliertem Experimentaufbau}:\begin{itemize}
+	\item{Hypothesen bestimme}n	\item{Aufgaben und Gruppenzuordnunge}n	\item{Durchfuehrun}g	\item{Analys}e\\\textbf{Hypothesen}:\begin{itemize}
+	\item{falsifizierbare Aussagen, quantifizierba}r	\item{Unterschiedshypothesen und Zusammenhangshypothese}n	\item{There als Menge von Hypothese}n\\\textbf{Probleme bei Experimenten}:\begin{itemize}
+	\item{Zusammenhang Streuung und Mittelwerte, Stoervariable}n	\item{10x Problem: hohe Streuung (Softwaretechnik Problem})\\\textbf{Probleme der Aufgabenstellungen}:\begin{itemize}
+	\item{nicht zu leicht, nicht zu schwer, keine Stoervariable}n\\\textbf{Messarten}:\begin{itemize}
+	\item{direkt, indirekt, Meinungsbasier}t\\\textbf{Versuchsaufbau}:\begin{itemize}
+	\item{prakitkabel, Stoerfaktoren, Zusammenhang zu Hypothes}e\\\textbf{Designs}:\begin{itemize}
+	\item{AB Betwee}n	\item{AB Between mit Messwdh}.	\item{AB/BA Cross Ove}r	\item{4-Group Between-Subjec}t	\item{Latin-Square Desig}n	\item{Alle haben Vor- und Nachteil}e\\\section{Analys}
+eGrundlagen\\	\item{Skalen (Nominal, Ordinal, Intervall, Verhaeltnis})	\item{Lagemaße (Arithm. Mittel, Meidan, Quantile, Streuung Spannweite, Varianz})	\item{Boxplot}s\\\textbf{Signifikanztests}:\begin{itemize}
+	\item{H0 und H1, Alphafehle}r\\\textbf{Analyseverfahren}:\begin{itemize}
+	\item{parametrisch/nicht parametrisc}h	\item{T-Test, Mann-Whitney-U, Wilcoxo}n	\item{Test auf Normalverteilun}g	\item{Varianzanalyse ANOVA/Messwdh}.\\\textbf{Vorteile von Cross-Over}:\begin{itemize}
+	\item{Weniger Probanden benötig}t\\\textbf{Lerneffekte}:\begin{itemize}
+	\item{koennen Ergebnis stärker oder schwächer ausfallen lasse}n\\\textbf{Threats to Validity}:\begin{itemize}
+	\item{Versuchsaufbau, Methode und Analys}e	\item{Internal, Conclusion, Construct, Externa}l	\item{Experimente dokumentieren, mit Threat}s\\Es Existieren auch qualitative Methoden\\
