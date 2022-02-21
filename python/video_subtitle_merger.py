@@ -61,20 +61,36 @@ if(colliding_files_in_dir(args.dir)):
         all_video_files = get_all_files_of_type(args.video_format, args.dir)
         all_subtitle_files = get_all_files_of_type(args.subtitle_format, args.dir)
         for x in range(0, len(all_video_files)):
-            try:
-                dirName = args.dir + os.sep + str(x + 1)
-                print('creating', dirName)
-                os.mkdir(dirName)
-            except OSError as e:
-                if e.errno == errno.EEXist:
-                    print('directory', dirName, 'already exists.')
+            dirName = args.dir + os.sep + str(x + 1)
+            print(dirName)
             target = dirName + os.sep + all_video_files[x]
-            print('moving', all_video_files[x], 'to', target)
-            shutil.move(all_video_files[x], target)
+            print('  ' + all_video_files[x])
             if x < len(all_subtitle_files):
                 target = dirName + os.sep + all_subtitle_files[x]
-                print('moving', all_subtitle_files[x], 'to', target)
-                shutil.move(all_subtitle_files[x], target)
+                print('  ' + all_subtitle_files[x])
+        
+        inp = input('Proceed? Type \'y\' \'n\':\n')
+        if inp == 'y':
+            all_video_files = get_all_files_of_type(args.video_format, args.dir)
+            all_subtitle_files = get_all_files_of_type(args.subtitle_format, args.dir)
+            for x in range(0, len(all_video_files)):
+                try:
+                    dirName = args.dir + os.sep + str(x + 1)
+                    print('creating', dirName)
+                    os.mkdir(dirName)
+                except OSError as e:
+                    if e.errno == errno.EEXist:
+                        print('directory', dirName, 'already exists.')
+                target = dirName + os.sep + all_video_files[x]
+                print('moving', all_video_files[x], 'to', target)
+                shutil.move(all_video_files[x], target)
+                if x < len(all_subtitle_files):
+                    target = dirName + os.sep + all_subtitle_files[x]
+                    print('moving', all_subtitle_files[x], 'to', target)
+                    shutil.move(all_subtitle_files[x], target)
+        else:
+            print('Aborting.')
+            sys.exit()
             
     elif inp == 'n':
         print('Try again after manually sorting the files into subdirectories')
