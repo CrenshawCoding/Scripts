@@ -1,5 +1,5 @@
 function(self, event, isInitialLogin, isReloadingUi)
-    if(IsInInstance() and IsInGroup())  then
+    if(IsInInstance() and IsInGroup() and (GetTime() - (aura_env.lastRun or 0)) > 20)  then
         local weeklyQuests = {"Trading Favors: Halls of Atonement",
             "Trading Favors: Necrotic Wake",
             "Trading Favors: Plaguefall",
@@ -24,7 +24,7 @@ function(self, event, isInitialLogin, isReloadingUi)
                         C_Timer.After(1*delay, function() 
                                 C_QuestLog.SetSelectedQuest(info["questID"]) 
                                 QuestLogPushQuest() 
-                                print("Sharing "..info["title"]) 
+                                print("Sharing: "..info["title"]) 
                         end)
                         delay = delay + 10
                     end
@@ -32,6 +32,7 @@ function(self, event, isInitialLogin, isReloadingUi)
             end
         end
     end
+    aura_env.last_run = GetTime()
     return false
 end
 
