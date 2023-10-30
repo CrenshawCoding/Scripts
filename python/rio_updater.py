@@ -4,10 +4,12 @@ import requests
 import os
 import datetime
 
-update_horde = False
+print('Python raider.io updater. I am at ' + os.getcwd())
+
 update_alliance = True
 
 db_dir = r'C:\Program Files\World of Warcraft\_retail_\Interface\AddOns\RaiderIO\db'
+log_path = r'C:\Program Files\World of Warcraft\_retail_'
 base_path = 'https://raw.githubusercontent.com/RaiderIO/raiderio-addon/master/db/'
 files = ['db_mythicplus_eu_lookup.lua',
          'db_mythicplus_eu_characters.lua',
@@ -34,7 +36,7 @@ files_alliance = ['db_eu_alliance_characters.lua',
                   'db_recruitment_eu_alliance_lookup.lua'
                   ]
 # ---
-log_file = open('rio_log.txt', 'w+')
+log_file = open(os.path.join(log_path, 'rio_log.txt'), 'w+')
 
 
 def end_on_excessive_retries(retries):
@@ -65,13 +67,12 @@ def write_to_file(file_name: str):
 
 try:
     retries = 0
-    if update_horde:
-        for file in files_horde:
-            retries += write_to_file(file)
-            end_on_excessive_retries(retries)
-    if update_alliance:
-        for file in files:
-            write_to_file(file)
-            end_on_excessive_retries(retries)
+    counter = 1
+    for file in files:
+        print('Progress: {0}/{1}'.format(counter, len(files)))
+        counter = counter + 1
+        write_to_file(file)
+        end_on_excessive_retries(retries)
 except Exception as e:
     log_file.write(repr(e))
+    print(repr(e))

@@ -1,0 +1,6 @@
+print('Welcome to the Booster Value Calc')
+sp = input('Please enter the SP the booster will grant in total (Main Attribute + 0,5 * Secondary Attribute): ')
+duration = input('Please enter the base booster duration in days: (Biology 5 is assumed): ')
+cost = input('Please enter the cost of the booster: ')
+print(f'The ISK/SP Value of the booster is: {round(float(cost) / (int(sp) * float(duration) * 2 * 24 * 60), 2)}')
+input("Press enter to exit;")

@@ -1,0 +1,9 @@
+Sind das alle Verbindungen die existieren:
+	Association
+	ContextLink
+	Extension
+	Generalization
+	Link
+	ProfileApplication
+
+Versionen relevant?
